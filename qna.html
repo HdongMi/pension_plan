@@ -5,6 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Q&A - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 여백 확보 및 레이아웃 개선 */
+    .container { 
+        padding-top: 30px !important; /* 헤더와의 간격을 확보합니다 */
+    }
+
+    .main-info {
+        padding: 0 5px; /* 양옆 여백을 살짝 주어 가독성을 높입니다 */
+    }
+
+    .sub-title { 
+        font-weight: bold; 
+        font-size: 17px; 
+        margin-bottom: 10px; 
+        color: var(--lilac-dark, #6a5da1);
+        padding-left: 5px;
+    }
+
+    .content-box { 
+        background: white; 
+        padding: 20px; 
+        border-radius: 15px; 
+        margin-bottom: 30px; /* Q&A 세트 간의 간격을 벌립니다 */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        line-height: 1.6;
+        color: #444;
+        border: 1px solid #f0f0f5;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -16,44 +45,34 @@
 
   <main class="container">
     <section class="main-info">
-      <div class="sub-title" style="font-weight: bold; font-size: 17px; margin-bottom: 8px; color: var(--lilac-dark, #6a5da1);">
-        Q1. 국민연금과 개인연금의 차이가 뭔가요?
-      </div>
-      <div class="content-box" style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); line-height: 1.6;">
+      <div class="sub-title">Q1. 국민연금과 개인연금의 차이가 뭔가요?</div>
+      <div class="content-box">
         국민연금은 국가가 운영하며 <strong>물가상승률을 반영</strong>해 실질 가치를 보장하고 평생 지급됩니다. 반면 개인연금은 민간 금융사가 운영하며 약정된 수익률에 따라 지급 기간과 금액이 결정됩니다.
       </div>
 
-      <div class="sub-title" style="font-weight: bold; font-size: 17px; margin-bottom: 8px; color: var(--lilac-dark, #6a5da1);">
-        Q2. 국민연금 해지 조건이 있나요?
-      </div>
-      <div class="content-box" style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); line-height: 1.6;">
+      <div class="sub-title">Q2. 국민연금 해지 조건이 있나요?</div>
+      <div class="content-box">
         국민연금은 사회보장제도로서 <strong>임의 해지가 불가능</strong>합니다. 다만, 국외 이주, 국적 상실, 또는 사망 시 유족연금이 발생하지 않는 경우에만 '반환일시금'으로 정산받을 수 있습니다.
       </div>
 
-      <div class="sub-title" style="font-weight: bold; font-size: 17px; margin-bottom: 8px; color: var(--lilac-dark, #6a5da1);">
-        Q3. 보험료를 미납하면 어떻게 되나요?
-      </div>
-      <div class="content-box" style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); line-height: 1.6;">
+      <div class="sub-title">Q3. 보험료를 미납하면 어떻게 되나요?</div>
+      <div class="content-box">
         미납 시 연체료가 발생하며, 가입 기간이 부족해져 나중에 받을 연금액이 크게 줄어듭니다. 소득이 있음에도 상습 미납할 경우 재산 압류 등 강제 징수 절차가 진행될 수 있습니다.
       </div>
 
-      <div class="sub-title" style="font-weight: bold; font-size: 17px; margin-bottom: 8px; color: var(--lilac-dark, #6a5da1);">
-        Q4. 소득이 없어도 무조건 내야 하나요?
-      </div>
-      <div class="content-box" style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); line-height: 1.6;">
+      <div class="sub-title">Q4. 소득이 없어도 무조건 내야 하나요?</div>
+      <div class="content-box">
         실직이나 폐업으로 소득이 없다면 <strong>'납부예외'</strong> 신청을 할 수 있습니다. 이 기간 동안은 보험료를 안 내도 되지만, 가입 기간에는 포함되지 않습니다.
       </div>
 
-      <div class="sub-title" style="font-weight: bold; font-size: 17px; margin-bottom: 8px; color: var(--lilac-dark, #6a5da1);">
-        Q5. 물가가 오르면 연금도 오르나요?
-      </div>
-      <div class="content-box" style="background: white; padding: 18px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); line-height: 1.6;">
+      <div class="sub-title">Q5. 물가가 오르면 연금도 오르나요?</div>
+      <div class="content-box">
         네, 매년 전년도 소비자물가변동률만큼 연금액을 조정하여 지급하므로 연금의 실질 가치가 하락하지 않도록 보장합니다.
       </div>
     </section>
   </main>
 
-  <footer style="text-align: center; padding: 30px 0; color: #bbb; font-size: 13px;">
+  <footer style="text-align: center; padding: 40px 0; color: #bbb; font-size: 13px;">
     &copy; 국민연금 정보 가이드
   </footer>
 </body>
