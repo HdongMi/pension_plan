@@ -12,37 +12,45 @@
     <div class="landing-content">
       <div class="icon">🏦</div>
       <h1>국민연금 정보 가이드</h1>
-      <p class="subtitle">어렵고 복잡한 국민연금,<br>핵심만 쉽고 빠르게 확인하세요.</p>
-      <button id="startBtn" class="start-btn">가이드 시작하기</button>
+      <p class="subtitle">내 연금 확인부터 제도 안내까지<br>한눈에 확인하세요.</p>
+      <button id="startBtn" class="start-btn">시작하기</button>
     </div>
   </div>
 
   <div id="mainLayout" class="hidden">
     <header class="header">
       <h1>국민연금 가이드</h1>
-      <nav class="nav-tabs">
-        <button class="tab-btn active" data-cate="all">전체보기</button>
-        <button class="tab-btn" data-cate="수령">수령/지급</button>
-        <button class="tab-btn" data-cate="납부">납부/꿀팁</button>
-      </nav>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="궁금한 키워드를 입력하세요 (예: 조기수령, 추납)" />
-      </div>
     </header>
 
-    <main id="guideList"></main>
+    <main class="menu-grid">
+      <div class="menu-item highlight" onclick="window.open('https://www.nps.or.kr/jsppage/csa/lookup/lookup_01.jsp', '_blank')">
+          <div class="menu-icon">🔍</div>
+          <div class="menu-text"><h3>내 연금액 조회</h3><p>공단 서비스로 이동</p></div>
+      </div>
+      <div class="menu-item highlight" onclick="window.open('https://www.nps.or.kr/jsppage/csa/calc/calc_01.jsp', '_blank')">
+          <div class="menu-icon">🧮</div>
+          <div class="menu-text"><h3>예상 수령액 계산</h3><p>모의계산 해보기</p></div>
+      </div>
+
+      <div class="menu-item" onclick="showSection('system')">
+          <div class="menu-icon">📖</div>
+          <div class="menu-text"><h3>국민연금 제도란?</h3><p>기본 개념 이해하기</p></div>
+      </div>
+      <div class="menu-item" onclick="showSection('types')">
+          <div class="menu-icon">📋</div>
+          <div class="menu-text"><h3>연금의 4가지 종류</h3><p>노령·장애·유족·반환</p></div>
+      </div>
+      <div class="menu-item" onclick="showSection('qna')">
+          <div class="menu-icon">❓</div>
+          <div class="menu-text"><h3>자주 묻는 Q&A</h3><p>궁금증 해결하기</p></div>
+      </div>
+    </main>
   </div>
 
   <div id="detailView" class="detail hidden">
     <button id="backBtn">← 뒤로가기</button>
-    <div class="detail-content">
-        <span id="detailBadge" class="badge"></span>
-        <h2 id="detailTitle"></h2>
-        <div id="detailBody" class="guide-text"></div>
-    </div>
-    <div class="action-area">
-        <a href="https://www.nps.or.kr" target="_blank" class="nps-btn">국민연금공단 바로가기</a>
-    </div>
+    <div id="detailContent" class="detail-body">
+        </div>
   </div>
 
   <script src="app.js"></script>
