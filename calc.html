@@ -6,7 +6,7 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Q&A 페이지 스타일 완벽 이식 */
+    /* 색상 변수 */
     :root {
       --main-blue: #7eb6ff;
       --dark-blue: #4a90e2;
@@ -14,7 +14,7 @@
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* Q&A와 동일한 중앙 정렬 헤더 */
+    /* Q&A 페이지와 100% 동일한 헤더 스타일 */
     .header { 
       background: var(--main-blue); 
       color: white; 
@@ -25,17 +25,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
     }
     .header h1 { 
       margin: 0; 
       font-size: 18px; 
       font-weight: bold; 
-      text-align: center;
-      width: 100%;
     }
 
-    /* 컨테이너 레이아웃 (Q&A와 동일한 여백) */
+    /* Q&A 페이지 레이아웃 이식 */
     .container { 
       padding: 20px;
       padding-top: 30px !important; 
@@ -66,7 +63,7 @@
       border: 1px solid #f0f0f5;
     }
 
-    /* 공식 박스 - 검정색 글자 */
+    /* 공식 텍스트 검정색 */
     .formula-badge {
       background: #f8f9fa; 
       padding: 18px; border-radius: 12px; 
@@ -76,23 +73,22 @@
       font-size: 1.1rem;
     }
 
-    /* 입력 폼 */
+    /* 입력창 디자인 */
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
       width: 100%; padding: 14px; border: 1px solid #e0e0e0; 
       border-radius: 10px; font-size: 15px; box-sizing: border-box; outline: none;
     }
-    .input-group input:focus { border-color: var(--main-blue); }
 
-    /* 계산 버튼 */
+    /* 버튼 디자인 */
     .calc-btn { 
       width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
       font-size: 16px; font-weight: bold; cursor: pointer;
     }
 
-    /* 결과 박스 */
+    /* 결과창 */
     .result-box { 
       margin-top: 25px; padding: 20px; background: #f0f7ff; 
       border-radius: 12px; text-align: center; display: none; 
@@ -158,10 +154,12 @@
       const b = parseFloat(document.getElementById('valB').value) || 0;
       const n = parseFloat(document.getElementById('valN').value) || 0;
       if(b === 0) { alert("본인의 예상 평균 소득을 입력해주세요."); return; }
+      
       const base = 1.2 * (a + b);
       const bonus = 1 + (0.05 * n / 12);
       const annual = Math.floor(base * bonus);
       const monthly = Math.floor(annual / 12);
+      
       document.getElementById('totalResult').innerText = annual.toLocaleString() + " 원";
       document.getElementById('monthlyResult').innerText = "월 수령액: 약 " + monthly.toLocaleString() + " 원";
       document.getElementById('resultBox').classList.add('show');
