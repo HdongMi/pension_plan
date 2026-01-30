@@ -14,45 +14,35 @@
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* Q&A 페이지 헤더 스타일 1:1 복사 */
+    /* 1. 파란색 배경 칸(배너)을 완전히 제거 */
     .header { 
-      background: var(--main-blue); 
-      color: white; 
-      padding: 15px 0; 
-      text-align: center; 
+      background: none; /* 배경색 삭제 */
+      padding: 25px 20px 10px 20px; /* 상단 여백 확보 및 왼쪽 정렬을 위한 패딩 */
     }
     .header-inner {
-      position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: flex-start; /* 왼쪽 정렬 */
     }
-    /* 뒤로가기 버튼 위치 잡기 */
-    .back-btn {
-      position: absolute; 
-      left: 20px; 
-      color: white; 
-      text-decoration: none; 
-      font-size: 20px; 
-      font-weight: bold;
-    }
+    
+    /* 2. 배경이 없으므로 글자색을 파란색/검정색 계열로 변경 */
     .header h1 { 
       margin: 0; 
-      font-size: 18px; 
+      font-size: 20px; 
       font-weight: bold; 
+      color: var(--dark-blue); /* 글자색을 진한 파란색으로 */
     }
 
-    /* 컨테이너 레이아웃 통일 */
+    /* 컨테이너 레이아웃 (Q&A 스타일 유지) */
     .container { 
       padding: 20px;
-      padding-top: 30px !important; 
+      padding-top: 10px !important; 
     }
 
     .main-info {
       padding: 0 5px;
     }
 
-    /* Q&A sub-title (글자색 검정/진한하늘색 선택 가능하나 Q&A 코드 기준 유지) */
     .sub-title { 
       font-weight: bold; 
       font-size: 17px; 
@@ -61,7 +51,6 @@
       padding-left: 5px;
     }
 
-    /* Q&A content-box */
     .content-box { 
       background: white; 
       padding: 20px; 
@@ -73,7 +62,7 @@
       border: 1px solid #f0f0f5;
     }
 
-    /* 수식 박스 - 검정 글자 */
+    /* 수식 박스 */
     .formula-badge {
       background: #f8f9fa; 
       padding: 18px; border-radius: 12px; 
@@ -83,7 +72,7 @@
       font-size: 1.1rem;
     }
 
-    /* 입력창 디자인 */
+    /* 입력 폼 */
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
@@ -91,14 +80,14 @@
       border-radius: 10px; font-size: 15px; box-sizing: border-box; outline: none;
     }
 
-    /* 버튼 디자인 */
+    /* 버튼 */
     .calc-btn { 
       width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
       font-size: 16px; font-weight: bold; cursor: pointer;
     }
 
-    /* 결과창 */
+    /* 결과 박스 */
     .result-box { 
       margin-top: 25px; padding: 20px; background: #f0f7ff; 
       border-radius: 12px; text-align: center; display: none; 
@@ -113,7 +102,6 @@
 <body>
   <header class="header">
     <div class="header-inner">
-      <a href="index.html" class="back-btn">←</a>
       <h1>연금액 계산기</h1>
     </div>
   </header>
