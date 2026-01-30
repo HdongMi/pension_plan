@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>국민연금 정보 가이드</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="landingPage" class="landing">
+    <div class="landing-content">
+      <div class="icon">🏦</div>
+      <h1>국민연금 정보 가이드</h1>
+      <p class="subtitle">어렵고 복잡한 국민연금,<br>핵심만 쉽고 빠르게 확인하세요.</p>
+      <button id="startBtn" class="start-btn">가이드 시작하기</button>
+    </div>
+  </div>
+
+  <div id="mainLayout" class="hidden">
+    <header class="header">
+      <h1>국민연금 가이드</h1>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-cate="all">전체보기</button>
+        <button class="tab-btn" data-cate="수령">수령/지급</button>
+        <button class="tab-btn" data-cate="납부">납부/꿀팁</button>
+      </nav>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="궁금한 키워드를 입력하세요 (예: 조기수령, 추납)" />
+      </div>
+    </header>
+
+    <main id="guideList"></main>
+  </div>
+
+  <div id="detailView" class="detail hidden">
+    <button id="backBtn">← 뒤로가기</button>
+    <div class="detail-content">
+        <span id="detailBadge" class="badge"></span>
+        <h2 id="detailTitle"></h2>
+        <div id="detailBody" class="guide-text"></div>
+    </div>
+    <div class="action-area">
+        <a href="https://www.nps.or.kr" target="_blank" class="nps-btn">국민연금공단 바로가기</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
