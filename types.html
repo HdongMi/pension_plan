@@ -5,6 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>연금 종류 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 여백 확보 및 가독성 개선 스타일 */
+    .container { 
+        padding-top: 30px !important; /* 헤더와의 거리를 확보합니다 */
+    }
+
+    .info-card { 
+        background: white; 
+        padding: 22px; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        margin-bottom: 20px; /* 카드 사이의 간격을 벌립니다 */
+        border: 1px solid #f0f0f5;
+    }
+
+    .info-card strong { 
+        display: inline-block;
+        font-size: 18px; 
+        color: var(--lilac-dark, #6a5da1); 
+        margin-bottom: 10px; 
+    }
+
+    .info-card p { 
+        margin: 0; 
+        line-height: 1.6; 
+        color: #555;
+        font-size: 15px;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -13,21 +42,29 @@
       <h1>연금 종류 및 혜택</h1>
     </div>
   </header>
+
   <main class="container">
     <div class="info-text-group">
-      <div class="info-card" style="margin-bottom:15px;">
-        <p><strong>1. 노령연금</strong><br>가입기간이 10년 이상이고 연령이 도달했을 때 평생 지급받는 연금입니다.</p>
-      </div>
-      <div class="info-card" style="margin-bottom:15px;">
-        <p><strong>2. 장애연금</strong><br>질병이나 부상으로 장애가 남았을 때 소득을 보장하기 위해 지급됩니다.</p>
-      </div>
-      <div class="info-card" style="margin-bottom:15px;">
-        <p><strong>3. 유족연금</strong><br>가입자 사망 시 남겨진 유족의 생계를 위해 지급되는 연금입니다.</p>
-      </div>
       <div class="info-card">
-        <p><strong>4. 반환일시금</strong><br>수급 요건을 못 채우거나 국외이주 시 이자를 더해 일시금으로 돌려받습니다.</p>
+        <p><strong>1. 노령연금</strong><br>가입기간이 10년 이상이고 연령이 도달했을 때 평생 지급받는 가장 기본적인 연금입니다. 노후 소득 보장의 핵심입니다.</p>
+      </div>
+
+      <div class="info-card">
+        <p><strong>2. 장애연금</strong><br>국민연금 가입 중에 발생한 질병이나 부상으로 인해 장애가 남았을 때, 본인과 가족의 소득을 보장하기 위해 지급됩니다.</p>
+      </div>
+
+      <div class="info-card">
+        <p><strong>3. 유족연금</strong><br>가입자 또는 연금 수급자가 사망했을 때, 남겨진 유족들이 생계를 유지할 수 있도록 매월 지급되는 연금입니다.</p>
+      </div>
+
+      <div class="info-card">
+        <p><strong>4. 반환일시금</strong><br>연금 수급 요건(가입기간 10년)을 채우지 못했거나 국외이주, 국적 상실 시 그동안 낸 보험료에 이자를 더해 일시금으로 돌려받는 제도입니다.</p>
       </div>
     </div>
+
+    <p style="font-size:12px; color:#aaa; text-align:center; margin-top:30px; line-height:1.4;">
+      * 상세한 수급 자격은 개인의 상황에 따라 다를 수 있습니다.
+    </p>
   </main>
 </body>
 </html>
