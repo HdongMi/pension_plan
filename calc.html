@@ -3,27 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>계산 공식 - 국민연금 가이드</title>
+  <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 계산기 전용 추가 스타일 */
+    .calc-box { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-top: 20px; }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-size: 14px; color: #666; margin-bottom: 5px; font-weight: bold; }
+    .input-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box; }
+    .calc-btn { width: 100%; padding: 15px; background: var(--lilac, #8e82bd); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    .result-box { margin-top: 20px; padding: 15px; background: #f4f2ff; border-radius: 10px; text-align: center; display: none; }
+    .result-box.show { display: block; }
+    .result-val { font-size: 22px; color: var(--lilac-dark, #6a5da1); font-weight: 800; }
+  </style>
 </head>
 <body>
   <header class="header">
     <div class="header-inner">
       <a href="index.html" style="position:absolute; left:20px; color:white; text-decoration:none; font-size:20px;">←</a>
-      <h1>연금액 계산 상세</h1>
+      <h1>연금액 계산기</h1>
     </div>
   </header>
+
   <main class="container">
     <div class="info-card">
-      <h2>📊 연금액은 어떻게 결정되나요?</h2>
-      <p>기본연금액은 본인의 가입기간과 가입기간 중의 소득, 그리고 연금 수급전 3년간 전체 가입자의 평균소득을 기초로 계산됩니다.</p>
+      <h2>📊 연금액 결정 공식</h2>
+      <p>기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
       <div style="background:#f4f2ff; padding:15px; border-radius:10px; margin:15px 0; font-family:monospace; font-weight:bold; color:var(--lilac-dark);">
-        기본연금액 = 1.2(A+B) × (1+0.05n/12)
+        연금액 ≈ 1.2(A+B) × (1+0.05n/12)
       </div>
-      <p><strong>A:</strong> 연금수급 전 3년간 전체 가입자의 평균 소득액<br>
-         <strong>B:</strong> 본인의 가입기간 중 평균 소득액<br>
-         <strong>n:</strong> 20년 초과 가입 월수</p>
     </div>
+
+    <div class="calc-box">
+      <h3 style="margin-top:0;">직접 계산해보기</h3>
+      
+      <div class="input-group">
+        <label>A: 전체 가입자 평균소득 (2025년 기준 약 300만 원)</label>
+        <input type="number" id="valA" value="3000000" placeholder="금액 입력">
+      </div>
+
+      <div class="input-group">
+        <label>B: 본인의 월 평균 소득 (가입기간 평균)</label>
+        <input type="number" id="valB" placeholder="예: 2500000">
+      </div>
+
+      <div class="input-group">
+        <label>n: 20년 초과 가입 개월수 (없으면 0)</label>
+        <input type="number" id="valN" value="0">
+      </div>
+
+      <button class="calc-btn" onclick="calculatePension()">계산하기</button>
+
+      <div id="resultBox" class="result-box">
+        <p style="margin:0; font-size:14px; color:#666;">예상 연금액 (연간)</p>
+        <div class="result-val" id="totalResult">0원</div>
+        <p id="monthlyResult" style="margin-top:5px; font-size:16px; font-weight:bold; color:#333;"></p>
+      </div>
+    </div>
+    
+    <p style="font-size:12px; color:#999; margin-top:15px; padding: 0 10px;">* 본 계산기는 간이 산식을 바탕으로 한 예상치이며, 실제 수령액은 물가상승률 및 가입 시기에 따라 달라질 수 있습니다.</p>
   </main>
+
+  <script>
+    function calculatePension() {
+      const a = parseFloat(document.getElementById('valA').value) || 0;
+      const b = parseFloat(document.getElementById('valB').value) || 0;
+      const n = parseFloat(document.getElementById('valN').value) || 0;
+
+      if(b === 0) {
+        alert("본인의 평균 소득을 입력해주세요.");
+        return;
+      }
+
+      // 공식 적용: 1.2 * (A + B) * (1 + 0.05 * n / 12)
+      // 실제 법정 산식은 복잡하므로 사용자 경험을 위한 근사치 계산
+      const base = 1.2 * (a + b);
+      const bonus = 1 + (0.05 * n / 12);
+      const annual = Math.floor(base * bonus);
+      const monthly = Math.floor(annual / 12);
+
+      document.getElementById('totalResult').innerText = annual.toLocaleString() + " 원";
+      document.getElementById('monthlyResult').innerText = "월 약 " + monthly.toLocaleString() + " 원";
+      document.getElementById('resultBox').classList.add('show');
+    }
+  </script>
 </body>
 </html>
