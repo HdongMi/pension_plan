@@ -2,36 +2,41 @@
 
 :root {
     --nps-blue: #1e3a8a;
-    --nps-accent: #3b82f6;
+    --nps-light-blue: #f0f7ff;
+    --gray-text: #475569;
 }
 
-body { font-family: 'Pretendard', sans-serif; margin: 0; background: #fdfdfd; color: #334155; line-height: 1.7; word-break: keep-all; }
+body { font-family: 'Pretendard', sans-serif; margin: 0; background: #fff; color: #334155; line-height: 1.7; word-break: keep-all; }
 .hidden { display: none !important; }
 
-.header { background: white; padding: 20px; border-bottom: 1px solid #f1f5f9; text-align: center; }
-.header h1 { font-size: 18px; color: var(--nps-blue); margin: 0; }
+/* 헤더 가로폭 맞춤 */
+.header { border-bottom: 1px solid #f1f5f9; background: #fff; }
+.header-inner { max-width: 600px; margin: 0 auto; padding: 20px; }
+.header h1 { font-size: 18px; color: var(--nps-blue); margin: 0; text-align: left; }
 
-.container { max-width: 600px; margin: 0 auto; padding-bottom: 50px; }
+.container { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; }
 
-/* 메인 카드 */
-.info-card { background: white; border-radius: 12px; padding: 25px; border: 1px solid #e2e8f0; margin: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-.info-card h2 { color: var(--nps-blue); font-size: 22px; margin-top: 0; }
+/* 📘 메인 정보 영역 정렬 */
+.main-info { padding-top: 30px; }
+.info-card { background: #fff; border-radius: 12px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 30px; text-align: left; }
+.info-card h2 { color: var(--nps-blue); font-size: 22px; margin: 0 0 15px 0; }
+.info-card p { margin: 0; font-size: 16px; color: var(--gray-text); }
 
-/* 리스트 스타일 */
-.menu-list { padding: 0 20px; }
-.list-item { display: flex; align-items: center; padding: 18px; background: white; border: 1px solid #f1f5f9; border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
-.list-item:active { transform: scale(0.98); background: #f8faff; }
-.list-item.highlight { border-color: #dbeafe; background: #f0f7ff; }
-.list-item .label { flex: 1; font-weight: 600; }
+.info-text-group { text-align: left; margin-bottom: 40px; }
+.info-text-group p { margin-bottom: 25px; font-size: 16px; color: var(--gray-text); }
 
-/* 상세 페이지 내부 스타일 */
+/* 🔗 리스트 카드 정렬 */
+.menu-list { text-align: left; }
+.section-label { font-size: 14px; font-weight: 600; color: #94a3b8; margin-bottom: 15px; }
+
+.list-item { display: flex; align-items: center; padding: 20px; background: var(--nps-light-blue); border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
+.list-item:active { transform: scale(0.98); background: #e0efff; }
+.list-item .label { flex: 1; font-weight: 600; font-size: 16px; color: #334155; }
+.list-item .arrow { color: #94a3b8; font-size: 20px; }
+
+/* 상세 페이지 (생략 - 이전과 동일) */
 .detail { position: fixed; inset: 0; background: white; z-index: 100; display: flex; flex-direction: column; }
-.detail-header { height: 60px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; padding: 0 15px; background: #fff; }
+.detail-header { height: 60px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; padding: 0 20px; }
 #backBtn { border: none; background: none; font-size: 16px; font-weight: 700; color: var(--nps-blue); cursor: pointer; }
-.detail-body { flex: 1; overflow-y: auto; padding: 25px 20px; }
-
-/* 상세 콘텐츠 내부 꾸미기 */
-.sub-title { font-size: 18px; font-weight: 700; color: var(--nps-blue); margin: 25px 0 10px; }
-.content-box { background: #f8fafc; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid var(--nps-accent); }
-.img-placeholder { width: 100%; border-radius: 10px; margin: 15px 0; border: 1px solid #eee; }
-.q-box { font-weight: 700; color: var(--nps-accent); display: block; margin-top: 15px; }
+#detailTopTitle { flex: 1; text-align: center; font-weight: 700; margin-right: 40px; }
+.detail-body { flex: 1; overflow-y: auto; padding: 30px 20px; }
