@@ -6,10 +6,17 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* 색상 변수 설정 - 연한 하늘색 테마 */
+    :root {
+      --main-blue: #7eb6ff;       /* 연한 하늘색 */
+      --dark-blue: #4a90e2;       /* 강조용 조금 더 진한 파란색 */
+      --light-bg: #f0f7ff;        /* 결과창 배경색 */
+    }
+
     /* 여백 및 가독성 개선 스타일 */
-    .container { padding-top: 30px !important; } /* 헤더와의 거리 확보 */
+    .container { padding-top: 30px !important; } 
     
-    .info-card { margin-bottom: 30px; } /* 공식 칸과 계산기 사이 거리 */
+    .info-card { margin-bottom: 30px; } 
 
     .calc-box { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
     
@@ -20,16 +27,41 @@
         width: 100%; padding: 14px; border: 1px solid #e0e0e0; border-radius: 10px; 
         font-size: 15px; box-sizing: border-box; outline: none; transition: border 0.2s;
     }
-    .input-group input:focus { border-color: var(--lilac, #8e82bd); }
+    /* 입력창 포커스 시 하늘색으로 변경 */
+    .input-group input:focus { border-color: var(--main-blue); }
 
-    /* Placeholder(예시) 스타일: 더 옅고 친절하게 */
     .input-group input::placeholder { color: #ccc; font-weight: 300; font-size: 14px; }
 
-    .calc-btn { width: 100%; padding: 16px; background: var(--lilac, #8e82bd); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    /* 버튼 색상을 연한 하늘색으로 변경 */
+    .calc-btn { 
+      width: 100%; padding: 16px; 
+      background: var(--main-blue); /* 보라색에서 하늘색으로 변경 */
+      color: white; border: none; border-radius: 10px; 
+      font-size: 16px; font-weight: bold; cursor: pointer; 
+      margin-top: 10px; 
+      transition: background 0.3s;
+    }
+    .calc-btn:active { background: var(--dark-blue); }
     
-    .result-box { margin-top: 25px; padding: 20px; background: #f8f7ff; border-radius: 12px; text-align: center; display: none; border: 1px dashed var(--lilac, #8e82bd); }
+    /* 결과 박스 배경색 및 테두리 변경 */
+    .result-box { 
+      margin-top: 25px; padding: 20px; 
+      background: var(--light-bg); 
+      border-radius: 12px; text-align: center; 
+      display: none; 
+      border: 1px dashed var(--main-blue); 
+    }
     .result-box.show { display: block; }
-    .result-val { font-size: 24px; color: var(--lilac-dark, #6a5da1); font-weight: 800; }
+    .result-val { font-size: 24px; color: var(--dark-blue); font-weight: 800; }
+
+    /* 상단 공식 박스 색상도 조화롭게 변경 */
+    .formula-badge {
+      background: var(--light-bg); 
+      padding: 18px; border-radius: 12px; 
+      margin: 15px 0; font-family: monospace; 
+      font-weight: bold; color: var(--dark-blue); 
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -44,7 +76,7 @@
     <div class="info-card">
       <h2 style="margin-top:0;">📊 연금액 결정 공식</h2>
       <p style="color: #666; font-size: 14px; line-height: 1.5;">기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
-      <div style="background:#f4f2ff; padding:18px; border-radius:12px; margin:15px 0; font-family:monospace; font-weight:bold; color:var(--lilac-dark); text-align:center;">
+      <div class="formula-badge">
         연금액 ≈ 1.2(A+B) × (1+0.05n/12)
       </div>
     </div>
@@ -54,17 +86,17 @@
       
       <div class="input-group">
         <label>A: 전체 가입자 평균소득</label>
-        <input type="number" id="valA" >
+        <input type="number" id="valA" placeholder="예: 2989237">
       </div>
 
       <div class="input-group">
         <label>B: 본인의 월 평균 소득</label>
-        <input type="number" id="valB" >
+        <input type="number" id="valB" placeholder="나의 평균 월급 입력">
       </div>
 
       <div class="input-group">
         <label>n: 20년 초과 가입 개월수</label>
-        <input type="number" id="valN" >
+        <input type="number" id="valN" placeholder="예: 12 (1년 초과 시)">
       </div>
 
       <button class="calc-btn" onclick="calculatePension()">나의 예상 연금 확인하기</button>
