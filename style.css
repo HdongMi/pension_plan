@@ -2,7 +2,6 @@
 
 :root {
     --nps-blue: #1e3a8a;
-    --nps-light: #eff6ff;
     --nps-accent: #3b82f6;
     --font-main: 'Pretendard', sans-serif;
 }
@@ -13,28 +12,25 @@ body { font-family: var(--font-main); margin: 0; background: #f8fafc; color: #1e
 /* 랜딩 */
 .landing { position: fixed; inset: 0; background: var(--nps-blue); display: flex; align-items: center; justify-content: center; text-align: center; z-index: 2000; color: white; transition: 0.5s; }
 .landing .icon { font-size: 60px; margin-bottom: 20px; }
-.start-btn { padding: 18px 60px; background: white; color: var(--nps-blue); border: none; border-radius: 35px; font-size: 18px; font-weight: 800; cursor: pointer; margin-top: 20px; }
+.start-btn { padding: 18px 60px; background: white; color: var(--nps-blue); border: none; border-radius: 35px; font-size: 18px; font-weight: 800; cursor: pointer; }
 
 /* 헤더 */
-.header { background: white; padding: 30px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
-.header h1 { font-size: 20px; margin: 0 0 20px; color: var(--nps-blue); }
-.nav-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-.tab-btn { padding: 8px 16px; border-radius: 20px; border: 1px solid #e2e8f0; background: white; font-size: 14px; font-weight: 600; cursor: pointer; color: #64748b; }
-.tab-btn.active { background: var(--nps-blue); color: white; border-color: var(--nps-blue); }
+.header { background: white; padding: 25px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+.header h1 { font-size: 20px; color: var(--nps-blue); margin: 0; }
 
-/* 검색바 */
-.search-container { max-width: 500px; margin: 0 auto; padding: 0 10px; }
-#searchInput { width: 100%; padding: 12px 20px; border-radius: 12px; border: 1px solid #cbd5e1; outline: none; font-size: 15px; box-sizing: border-box; }
+/* 메뉴 그리드 */
+.menu-grid { padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
+.menu-item { background: white; border-radius: 20px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid #f1f5f9; transition: 0.2s; }
+.menu-item:active { transform: scale(0.98); background: #f8faff; }
+.menu-item.highlight { border-left: 5px solid var(--nps-accent); }
+.menu-icon { font-size: 30px; }
+.menu-text h3 { margin: 0; font-size: 17px; color: #0f172a; }
+.menu-text p { margin: 4px 0 0; font-size: 13px; color: #64748b; }
 
-/* 카드 리스트 */
-#guideList { padding: 20px; max-width: 600px; margin: 0 auto; }
-.card { background: white; border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
-.card:active { transform: scale(0.97); }
-.badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; margin-bottom: 10px; background: var(--nps-light); color: var(--nps-accent); }
-.card h3 { margin: 0; font-size: 18px; line-height: 1.4; color: #0f172a; }
-
-/* 상세 페이지 */
+/* 상세 모달 */
 .detail { position: fixed; inset: 0; background: white; z-index: 3000; overflow-y: auto; padding: 30px 20px; }
-#backBtn { border: none; background: none; color: var(--nps-accent); font-weight: 700; cursor: pointer; margin-bottom: 20px; }
-.guide-text { line-height: 1.8; font-size: 16px; color: #334155; white-space: pre-wrap; margin-top: 20px; }
-.nps-btn { display: block; text-align: center; background: var(--nps-blue); color: white; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 40px; }
+#backBtn { border: none; background: none; color: var(--nps-accent); font-weight: 700; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
+.detail-body h2 { color: var(--nps-blue); margin-bottom: 20px; border-bottom: 2px solid #eff6ff; padding-bottom: 10px; }
+.guide-box { background: #f8faff; padding: 20px; border-radius: 15px; line-height: 1.8; margin-bottom: 15px; }
+.qna-item { margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
+.qna-q { font-weight: 700; color: var(--nps-accent); margin-bottom: 8px; display: block; }
