@@ -6,96 +6,49 @@
   <title>국민연금 정보 가이드</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* 스플래시(인트로) 화면 스타일 */
+    /* 인트로 화면 스타일 */
     #splash {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      /* 더 연하고 화사한 파란색 그라데이션 */
+      top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(135deg, #7eb6ff 0%, #4a90e2 100%); 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
       z-index: 9999;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.5s ease;
     }
 
     .splash-logo {
-      width: 110px;
-      height: 110px;
-      background: white;
-      border-radius: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      margin-bottom: 25px;
-      animation: float 3s ease-in-out infinite; /* 둥둥 떠있는 효과 */
+      width: 110px; height: 110px; background: white; border-radius: 30px;
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin-bottom: 25px;
+      animation: float 3s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .splash-logo span { font-size: 45px; }
+    .splash-title { color: white; font-size: 26px; font-weight: bold; margin-bottom: 8px; }
+    .splash-sub { color: rgba(255, 255, 255, 0.9); font-size: 15px; margin-bottom: 40px; }
 
-    .splash-title {
-      color: white;
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: -1px;
-      margin-bottom: 8px;
-    }
-
-    .splash-sub {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 15px;
-      margin-bottom: 40px;
-    }
-
-    /* 시작하기 버튼 스타일 */
     .start-btn {
-      padding: 16px 50px;
-      background-color: white;
-      color: #4a90e2;
-      border: none;
-      border-radius: 50px;
-      font-size: 17px;
-      font-weight: bold;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 16px 50px; background-color: white; color: #4a90e2;
+      border: none; border-radius: 50px; font-size: 17px; font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;
     }
 
-    .start-btn:active {
-      transform: scale(0.95);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    /* 본문 숨김 방지 */
+    /* 본문 숨김 */
     body.loading { overflow: hidden; }
-    
-    /* 화면 사라질 때 효과 */
-    #splash.fade-out {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-20px); /* 위로 살짝 올라가며 사라짐 */
-    }
+    #splash.fade-out { opacity: 0; visibility: hidden; }
+
+    /* 헤더 수정 (뒤로가기 버튼 삭제 버전) */
+    .header { background: #7eb6ff; color: white; padding: 15px 0; text-align: center; }
+    .header h1 { margin: 0; font-size: 18px; width: 100%; }
   </style>
 </head>
 <body class="loading">
 
   <div id="splash">
-    <div class="splash-logo">
-      <span>💙</span> 
-    </div>
+    <div class="splash-logo"><span>💙</span></div>
     <div class="splash-title">국민연금 가이드</div>
     <div class="splash-sub">알기 쉬운 내 노후 설계</div>
-    
     <button class="start-btn" onclick="startApp()">시작하기</button>
   </div>
 
@@ -110,17 +63,12 @@
       <section class="main-info">
         <div class="info-card">
           <h2>국민연금이란?</h2>
-          <p>모든 국민 대상, 모두가 가입해 노후에 필요한 연금을 받을 수 있도록 하는 제도입니다. 국민연금, 건강보험, 고용보험, 산재보험! 모두 모아 4대보험! 그 중에서도 정부에서 직접 운영하는 공적연금제도를 국민연금이라고 합니다.</p>
-        </div>
-        
-        <div class="info-text-group">
-          <p>국민연금의 실 용도는 어떻게 되는 걸까요? 국민들의 미래를 대비해 생활을 유지하는 데 어려움이 들지 않도록 미리 가입하는 연금제도라고 생각하시면 됩니다.</p>
-          <p>공적 연금이며, 의무가입을 해야 하므로 소득 활동 시에는 보험료를 납부해야 하는 구조입니다. 내가 내고 싶지 않다고 안 낼 수는 없습니다.</p>
+          <p>모든 국민 대상, 노후에 필요한 연금을 받을 수 있도록 하는 국가 제도입니다.</p>
         </div>
       </section>
 
       <section class="menu-list">
-        <p class="section-label">더 알아보기 (상세 가이드)</p>
+        <p class="section-label">더 알아보기</p>
         <a href="calc.html" class="list-item highlight" style="text-decoration:none; color:inherit;">
           <span class="label">📊 연금액 결정 및 계산 공식 상세</span>
           <span class="arrow">›</span>
@@ -140,16 +88,14 @@
   <script>
     function startApp() {
       const splash = document.getElementById('splash');
-      
-      // fade-out 클래스 추가하여 애니메이션 실행
       splash.classList.add('fade-out');
       
-      // 애니메이션이 끝난 후 스크롤 허용 및 요소 제거
+      // 0.5초 뒤에 요소를 아예 삭제하여 뒤로가기 시 안 보이게 함
       setTimeout(() => {
+        splash.remove(); 
         document.body.classList.remove('loading');
-      }, 600);
+      }, 500);
     }
   </script>
-
 </body>
 </html>
