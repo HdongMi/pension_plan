@@ -9,35 +9,32 @@
     :root {
       --main-blue: #7eb6ff;
       --dark-blue: #4a90e2;
+      /* 이미지에서 추출한 진한 남색 텍스트 컬러 */
+      --header-navy: #1d265a; 
     }
 
-    /* 배경색을 연금 종류 페이지와 동일한 연한 회색/흰색 톤으로 고정 */
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* 문제의 파란 박스를 완전히 없애는 헤더 설정 */
+    /* 헤더 박스 완전 제거 및 여백 조정 */
     .header { 
-      background: transparent; /* 배경색 투명하게 삭제 */
-      padding: 40px 20px 10px 25px; /* 연금 종류 페이지와 제목 위치 맞춤 */
-      text-align: left; /* 왼쪽 정렬 */
+      background: none; 
+      padding: 50px 20px 15px 25px; /* 이미지의 위치와 일치하도록 상단 여백 조정 */
+      text-align: left;
     }
     
-    .header-inner {
-      display: block; /* 불필요한 flex 제거 */
-    }
-
-    /* 제목 글자색을 파란색으로, 위치는 왼쪽 끝으로 */
+    /* "연금 종류 및 혜택"과 폰트 스타일 1:1 매칭 */
     .header h1 { 
       margin: 0; 
-      font-size: 22px; 
-      font-weight: 800; 
-      color: var(--dark-blue); 
-      letter-spacing: -0.5px;
+      font-size: 24px; /* 글자 크기 일치 */
+      font-weight: 900; /* 가장 굵은 두께로 변경 */
+      color: var(--header-navy); /* 진한 남색으로 변경 */
+      letter-spacing: -1.2px; /* 자간을 좁혀서 묵직한 느낌 재현 */
     }
 
-    /* 컨테이너 및 카드 스타일 */
+    /* 나머지 카드 및 컨테이너 스타일 */
     .container { 
       padding: 20px;
-      padding-top: 10px !important; 
+      padding-top: 5px !important; 
     }
 
     .sub-title { 
@@ -46,9 +43,6 @@
       margin-bottom: 12px; 
       color: var(--dark-blue);
       padding-left: 5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
     }
 
     .content-box { 
@@ -71,7 +65,6 @@
       font-size: 1.1rem;
     }
 
-    /* 입력 폼 디자인 */
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
@@ -98,17 +91,13 @@
 </head>
 <body>
   <header class="header">
-    <div class="header-inner">
-      <h1>연금액 계산기</h1>
-    </div>
+    <h1>연금액 계산기</h1>
   </header>
 
   <main class="container">
     <section class="main-info">
-      
       <div class="sub-title">📊 계산 공식</div>
       <div class="content-box">
-        <p style="margin-top:0; font-size:14px; color:#666;">기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
         <div class="formula-badge">
           연금액 ≈ 1.2(A+B) × (1+0.05n/12)
         </div>
@@ -136,13 +125,8 @@
           <p id="monthlyResult" style="margin-top:8px; font-size:17px; font-weight:bold; color:#333;"></p>
         </div>
       </div>
-
     </section>
   </main>
-
-  <footer>
-    &copy; 국민연금 정보 가이드
-  </footer>
 
   <script>
     function calculatePension() {
@@ -150,12 +134,10 @@
       const b = parseFloat(document.getElementById('valB').value) || 0;
       const n = parseFloat(document.getElementById('valN').value) || 0;
       if(b === 0) { alert("본인의 예상 평균 소득을 입력해주세요."); return; }
-      
       const base = 1.2 * (a + b);
       const bonus = 1 + (0.05 * n / 12);
       const annual = Math.floor(base * bonus);
       const monthly = Math.floor(annual / 12);
-      
       document.getElementById('totalResult').innerText = annual.toLocaleString() + " 원";
       document.getElementById('monthlyResult').innerText = "월 수령액: 약 " + monthly.toLocaleString() + " 원";
       document.getElementById('resultBox').classList.add('show');
