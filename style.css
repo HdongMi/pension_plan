@@ -9,28 +9,30 @@
 body { font-family: var(--font-main); margin: 0; background: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; }
 .hidden { display: none !important; }
 
-/* 랜딩 */
+/* 랜딩 & 헤더 */
 .landing { position: fixed; inset: 0; background: var(--nps-blue); display: flex; align-items: center; justify-content: center; text-align: center; z-index: 2000; color: white; transition: 0.5s; }
 .landing .icon { font-size: 60px; margin-bottom: 20px; }
 .start-btn { padding: 18px 60px; background: white; color: var(--nps-blue); border: none; border-radius: 35px; font-size: 18px; font-weight: 800; cursor: pointer; }
-
-/* 헤더 */
 .header { background: white; padding: 25px 20px; text-align: center; border-bottom: 1px solid #e2e8f0; }
 .header h1 { font-size: 20px; color: var(--nps-blue); margin: 0; }
 
 /* 메뉴 그리드 */
 .menu-grid { padding: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
-.menu-item { background: white; border-radius: 20px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid #f1f5f9; transition: 0.2s; }
+.menu-item { background: white; border-radius: 20px; padding: 22px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; border: 1px solid #f1f5f9; transition: 0.2s; }
 .menu-item:active { transform: scale(0.98); background: #f8faff; }
-.menu-item.highlight { border-left: 5px solid var(--nps-accent); }
+.menu-item.highlight { border-left: 5px solid var(--nps-accent); background: #f0f7ff; }
 .menu-icon { font-size: 30px; }
-.menu-text h3 { margin: 0; font-size: 17px; color: #0f172a; }
+.menu-text h3 { margin: 0; font-size: 17px; }
 .menu-text p { margin: 4px 0 0; font-size: 13px; color: #64748b; }
 
-/* 상세 모달 */
+/* 상세 모달 & 계산식 디자인 */
 .detail { position: fixed; inset: 0; background: white; z-index: 3000; overflow-y: auto; padding: 30px 20px; }
 #backBtn { border: none; background: none; color: var(--nps-accent); font-weight: 700; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
-.detail-body h2 { color: var(--nps-blue); margin-bottom: 20px; border-bottom: 2px solid #eff6ff; padding-bottom: 10px; }
-.guide-box { background: #f8faff; padding: 20px; border-radius: 15px; line-height: 1.8; margin-bottom: 15px; }
-.qna-item { margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
-.qna-q { font-weight: 700; color: var(--nps-accent); margin-bottom: 8px; display: block; }
+.detail-body h2 { color: var(--nps-blue); margin-bottom: 24px; border-bottom: 2px solid #eff6ff; padding-bottom: 10px; }
+
+/* 계산 공식 박스 */
+.formula-box { background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; font-family: monospace; text-align: center; margin: 20px 0; line-height: 1.5; font-size: 14px; }
+.formula-box b { color: #60a5fa; }
+
+.guide-box { background: #f8faff; padding: 20px; border-radius: 15px; line-height: 1.8; margin-bottom: 20px; font-size: 15px; }
+.guide-box strong { color: var(--nps-blue); display: block; margin-bottom: 8px; font-size: 16px; }
