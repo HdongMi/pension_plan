@@ -6,7 +6,6 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 색상 변수 */
     :root {
       --main-blue: #7eb6ff;
       --dark-blue: #4a90e2;
@@ -14,39 +13,37 @@
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* 1. 파란색 배경 칸(배너)을 완전히 제거 */
+    /* 1. 파란색 배경 칸(배너)을 완전히 제거하고 배경을 본문과 통일 */
     .header { 
-      background: none; /* 배경색 삭제 */
-      padding: 25px 20px 10px 20px; /* 상단 여백 확보 및 왼쪽 정렬을 위한 패딩 */
+      background: #f5f5f5; /* 바디 배경색과 동일하게 설정하여 칸을 없앰 */
+      padding: 30px 20px 10px 25px; /* 상단 및 좌측 여백 */
     }
+    
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: flex-start; /* 왼쪽 정렬 */
     }
-    
-    /* 2. 배경이 없으므로 글자색을 파란색/검정색 계열로 변경 */
+
+    /* 2. 배경이 없으므로 제목 글자색을 진한 파란색으로 설정 */
     .header h1 { 
       margin: 0; 
-      font-size: 20px; 
-      font-weight: bold; 
-      color: var(--dark-blue); /* 글자색을 진한 파란색으로 */
+      font-size: 22px; /* 제목 크기를 살짝 키워 강조 */
+      font-weight: 800; 
+      color: var(--dark-blue); 
+      letter-spacing: -0.5px;
     }
 
-    /* 컨테이너 레이아웃 (Q&A 스타일 유지) */
+    /* 컨테이너 레이아웃 (Q&A 스타일 이식) */
     .container { 
       padding: 20px;
-      padding-top: 10px !important; 
-    }
-
-    .main-info {
-      padding: 0 5px;
+      padding-top: 5px !important; 
     }
 
     .sub-title { 
       font-weight: bold; 
       font-size: 17px; 
-      margin-bottom: 10px; 
+      margin-bottom: 12px; 
       color: var(--dark-blue);
       padding-left: 5px;
     }
@@ -62,7 +59,7 @@
       border: 1px solid #f0f0f5;
     }
 
-    /* 수식 박스 */
+    /* 공식 텍스트 검정색 */
     .formula-badge {
       background: #f8f9fa; 
       padding: 18px; border-radius: 12px; 
@@ -72,22 +69,20 @@
       font-size: 1.1rem;
     }
 
-    /* 입력 폼 */
+    /* 입력 폼 및 버튼 */
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
       width: 100%; padding: 14px; border: 1px solid #e0e0e0; 
       border-radius: 10px; font-size: 15px; box-sizing: border-box; outline: none;
     }
-
-    /* 버튼 */
     .calc-btn { 
       width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
       font-size: 16px; font-weight: bold; cursor: pointer;
     }
 
-    /* 결과 박스 */
+    /* 결과창 */
     .result-box { 
       margin-top: 25px; padding: 20px; background: #f0f7ff; 
       border-radius: 12px; text-align: center; display: none; 
@@ -153,12 +148,10 @@
       const b = parseFloat(document.getElementById('valB').value) || 0;
       const n = parseFloat(document.getElementById('valN').value) || 0;
       if(b === 0) { alert("본인의 예상 평균 소득을 입력해주세요."); return; }
-      
       const base = 1.2 * (a + b);
       const bonus = 1 + (0.05 * n / 12);
       const annual = Math.floor(base * bonus);
       const monthly = Math.floor(annual / 12);
-      
       document.getElementById('totalResult').innerText = annual.toLocaleString() + " 원";
       document.getElementById('monthlyResult').innerText = "월 수령액: 약 " + monthly.toLocaleString() + " 원";
       document.getElementById('resultBox').classList.add('show');
