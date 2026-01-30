@@ -6,101 +6,92 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --main-blue: #7eb6ff;
-      --dark-blue: #4a90e2;
-      /* 이미지에서 추출한 진한 남색 텍스트 컬러 */
-      --header-navy: #1d265a; 
+    /* 1. Q&A 페이지와 동일한 레이아웃 및 여백 설정 */
+    .container { 
+        padding-top: 30px !important; 
     }
 
-    body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
+    .main-info {
+        padding: 0 5px;
+    }
 
-    /* 헤더 박스 완전 제거 및 여백 조정 */
-    .header { 
-      background: none; 
-      padding: 50px 20px 15px 25px; /* 이미지의 위치와 일치하도록 상단 여백 조정 */
-      text-align: left;
+    /* 2. 제목(h1) 스타일을 Q&A 페이지와 100% 동일하게 강제 고정 */
+    .header {
+      background: none;
+      padding: 0; /* 불필요한 패딩 제거 */
     }
     
-    /* "연금 종류 및 혜택"과 폰트 스타일 1:1 매칭 */
-    .header h1 { 
-      margin: 0; 
-      font-size: 24px; /* 글자 크기 일치 */
-      font-weight: 900; /* 가장 굵은 두께로 변경 */
-      color: var(--header-navy); /* 진한 남색으로 변경 */
-      letter-spacing: -1.2px; /* 자간을 좁혀서 묵직한 느낌 재현 */
+    .header-inner {
+      padding: 30px 20px 10px 25px; /* Q&A 헤더 위치와 동일하게 설정 */
     }
 
-    /* 나머지 카드 및 컨테이너 스타일 */
-    .container { 
-      padding: 20px;
-      padding-top: 5px !important; 
+    .header h1 {
+      margin: 0;
+      font-size: 20px; /* Q&A 페이지 기본 크기 */
+      font-weight: bold;
+      color: #1d265a; /* 이미지에서 보이는 진한 남색 */
+      text-align: left;
     }
 
+    /* 3. 소제목(sub-title) 색상을 Q&A처럼 하늘색으로 통일 */
     .sub-title { 
-      font-weight: bold; 
-      font-size: 17px; 
-      margin-bottom: 12px; 
-      color: var(--dark-blue);
-      padding-left: 5px;
+        font-weight: bold; 
+        font-size: 17px; 
+        margin-bottom: 10px; 
+        color: #4a90e2; 
+        padding-left: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
 
     .content-box { 
-      background: white; 
-      padding: 20px; 
-      border-radius: 15px; 
-      margin-bottom: 30px; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-      line-height: 1.6;
-      color: #444;
-      border: 1px solid #f0f0f5;
+        background: white; 
+        padding: 20px; 
+        border-radius: 15px; 
+        margin-bottom: 30px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        line-height: 1.6;
+        color: #444;
+        border: 1px solid #f0f0f5;
     }
 
+    /* 계산기 전용 추가 스타일 */
     .formula-badge {
-      background: #f8f9fa; 
-      padding: 18px; border-radius: 12px; 
+      background: #f8f9fa; padding: 18px; border-radius: 12px; 
       margin: 15px 0; font-family: 'Courier New', monospace; 
-      font-weight: bold; color: #000; 
-      text-align: center; border: 1px solid #eee;
-      font-size: 1.1rem;
+      font-weight: bold; color: #000; text-align: center; border: 1px solid #eee;
     }
-
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
       width: 100%; padding: 14px; border: 1px solid #e0e0e0; 
-      border-radius: 10px; font-size: 15px; box-sizing: border-box; outline: none;
+      border-radius: 10px; font-size: 15px; box-sizing: border-box;
     }
-
     .calc-btn { 
-      width: 100%; padding: 16px; background: var(--main-blue); 
+      width: 100%; padding: 16px; background: #7eb6ff; 
       color: white; border: none; border-radius: 10px; 
       font-size: 16px; font-weight: bold; cursor: pointer;
     }
-
     .result-box { 
       margin-top: 25px; padding: 20px; background: #f0f7ff; 
-      border-radius: 12px; text-align: center; display: none; 
-      border: 1px dashed var(--main-blue); 
+      border-radius: 12px; text-align: center; display: none; border: 1px dashed #7eb6ff; 
     }
     .result-box.show { display: block; }
-    .result-val { font-size: 24px; color: #0056b3; font-weight: 800; }
-
-    footer { text-align: center; padding: 40px 0; color: #bbb; font-size: 13px; }
   </style>
 </head>
 <body>
   <header class="header">
-    <h1>연금액 계산기</h1>
+    <div class="header-inner">
+      <h1>연금액 계산기</h1>
+    </div>
   </header>
 
   <main class="container">
     <section class="main-info">
       <div class="sub-title">📊 계산 공식</div>
       <div class="content-box">
-        <div class="formula-badge">
-          연금액 ≈ 1.2(A+B) × (1+0.05n/12)
-        </div>
+        <div class="formula-badge">연금액 ≈ 1.2(A+B) × (1+0.05n/12)</div>
       </div>
 
       <div class="sub-title">직접 계산</div>
@@ -115,14 +106,12 @@
         </div>
         <div class="input-group">
           <label>n: 20년 초과 가입 개월수</label>
-          <input type="number" id="valN" placeholder="예: 12 (1년 초과 시)">
+          <input type="number" id="valN" placeholder="예: 12">
         </div>
         <button class="calc-btn" onclick="calculatePension()">계산하기</button>
 
         <div id="resultBox" class="result-box">
-          <p style="margin:0; font-size:14px; color:#777; margin-bottom:5px;">나의 예상 연금액 (연간)</p>
-          <div class="result-val" id="totalResult">0원</div>
-          <p id="monthlyResult" style="margin-top:8px; font-size:17px; font-weight:bold; color:#333;"></p>
+          <div id="totalResult" style="font-size: 22px; font-weight: bold; color: #1d265a;"></div>
         </div>
       </div>
     </section>
@@ -133,13 +122,8 @@
       const a = parseFloat(document.getElementById('valA').value) || 0;
       const b = parseFloat(document.getElementById('valB').value) || 0;
       const n = parseFloat(document.getElementById('valN').value) || 0;
-      if(b === 0) { alert("본인의 예상 평균 소득을 입력해주세요."); return; }
-      const base = 1.2 * (a + b);
-      const bonus = 1 + (0.05 * n / 12);
-      const annual = Math.floor(base * bonus);
-      const monthly = Math.floor(annual / 12);
-      document.getElementById('totalResult').innerText = annual.toLocaleString() + " 원";
-      document.getElementById('monthlyResult').innerText = "월 수령액: 약 " + monthly.toLocaleString() + " 원";
+      const res = Math.floor((1.2 * (a + b)) * (1 + (0.05 * n / 12)));
+      document.getElementById('totalResult').innerText = "예상 연금: " + res.toLocaleString() + " 원";
       document.getElementById('resultBox').classList.add('show');
     }
   </script>
