@@ -6,7 +6,7 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Q&A 페이지의 스타일을 그대로 가져옴 */
+    /* Q&A 페이지 스타일 완벽 이식 */
     :root {
       --main-blue: #7eb6ff;
       --dark-blue: #4a90e2;
@@ -14,47 +14,59 @@
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* 헤더 스타일 통일 (뒤로가기 없음) */
+    /* Q&A와 동일한 중앙 정렬 헤더 */
     .header { 
       background: var(--main-blue); 
       color: white; 
       padding: 15px 0; 
       text-align: center; 
     }
-    .header h1 { margin: 0; font-size: 18px; font-weight: bold; }
+    .header-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .header h1 { 
+      margin: 0; 
+      font-size: 18px; 
+      font-weight: bold; 
+      text-align: center;
+      width: 100%;
+    }
 
-    /* Q&A 페이지와 동일한 여백 확보 */
+    /* 컨테이너 레이아웃 (Q&A와 동일한 여백) */
     .container { 
-        padding: 20px;
-        padding-top: 30px !important; 
+      padding: 20px;
+      padding-top: 30px !important; 
     }
 
     .main-info {
-        padding: 0 5px;
+      padding: 0 5px;
     }
 
-    /* Q&A의 sub-title 스타일 적용 */
+    /* Q&A sub-title 스타일 */
     .sub-title { 
-        font-weight: bold; 
-        font-size: 17px; 
-        margin-bottom: 10px; 
-        color: var(--dark-blue);
-        padding-left: 5px;
+      font-weight: bold; 
+      font-size: 17px; 
+      margin-bottom: 10px; 
+      color: var(--dark-blue);
+      padding-left: 5px;
     }
 
-    /* Q&A의 content-box 스타일 적용 */
+    /* Q&A content-box 스타일 */
     .content-box { 
-        background: white; 
-        padding: 20px; 
-        border-radius: 15px; 
-        margin-bottom: 30px; 
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-        line-height: 1.6;
-        color: #444;
-        border: 1px solid #f0f0f5;
+      background: white; 
+      padding: 20px; 
+      border-radius: 15px; 
+      margin-bottom: 30px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+      line-height: 1.6;
+      color: #444;
+      border: 1px solid #f0f0f5;
     }
 
-    /* 수식 박스 - 검정색 글자 유지 */
+    /* 공식 박스 - 검정색 글자 */
     .formula-badge {
       background: #f8f9fa; 
       padding: 18px; border-radius: 12px; 
@@ -64,7 +76,7 @@
       font-size: 1.1rem;
     }
 
-    /* 입력 폼 스타일 */
+    /* 입력 폼 */
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
@@ -94,7 +106,9 @@
 </head>
 <body>
   <header class="header">
-    <h1>연금액 계산기</h1>
+    <div class="header-inner">
+      <h1>연금액 계산기</h1>
+    </div>
   </header>
 
   <main class="container">
@@ -132,10 +146,6 @@
       </div>
 
     </section>
-    
-    <p style="font-size:11px; color:#aaa; padding: 0 10px; line-height: 1.4;">
-      * 본 계산기는 이해를 돕기 위한 간이 산식입니다. 실제 수령액은 국민연금공단의 실제 산정액과 차이가 날 수 있습니다.
-    </p>
   </main>
 
   <footer>
