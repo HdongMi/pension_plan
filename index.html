@@ -31,30 +31,22 @@
 
       <section class="menu-list">
         <p class="section-label">더 알아보기 (상세 가이드)</p>
-        <div class="list-item highlight" onclick="showSection('howToCalc')">
+        
+        <a href="calc.html" class="list-item highlight" style="text-decoration:none; color:inherit;">
           <span class="label">📊 연금액 결정 및 계산 공식 상세</span>
           <span class="arrow">›</span>
-        </div>
-        <div class="list-item" onclick="showSection('types')">
+        </a>
+        <a href="types.html" class="list-item" style="text-decoration:none; color:inherit;">
           <span class="label">📋 국민연금의 4가지 종류와 혜택</span>
           <span class="arrow">›</span>
-        </div>
-        <div class="list-item" onclick="showSection('qna')">
+        </a>
+        <a href="qna.html" class="list-item" style="text-decoration:none; color:inherit;">
           <span class="label">❓ 자주 묻는 질문 베스트 5</span>
           <span class="arrow">›</span>
-        </div>
+        </a>
       </section>
     </main>
   </div>
 
-  <div id="detailView" class="detail hidden">
-    <div class="detail-header">
-      <button id="backBtn">← 뒤로</button>
-      <span id="detailTopTitle">상세정보</span>
-    </div>
-    <div id="detailContent" class="detail-body"></div>
-  </div>
-
-  <script src="app.js"></script>
 </body>
 </html>
