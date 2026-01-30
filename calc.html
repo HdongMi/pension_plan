@@ -6,17 +6,15 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 색상 변수 설정 - 인트로와 동일한 연한 하늘색 테마 */
+    /* Q&A 페이지의 스타일을 그대로 가져옴 */
     :root {
-      --main-blue: #7eb6ff;       /* 연한 하늘색 */
-      --dark-blue: #4a90e2;       /* 강조용 조금 더 진한 파란색 */
-      --light-bg: #f8f9fa;        /* 수식 박스용 미색 */
-      --result-bg: #f0f7ff;       /* 결과창 배경색 */
+      --main-blue: #7eb6ff;
+      --dark-blue: #4a90e2;
     }
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* 헤더: 뒤로가기 버튼 삭제 및 중앙 정렬 */
+    /* 헤더 스타일 통일 (뒤로가기 없음) */
     .header { 
       background: var(--main-blue); 
       color: white; 
@@ -25,59 +23,73 @@
     }
     .header h1 { margin: 0; font-size: 18px; font-weight: bold; }
 
-    /* 컨테이너 및 카드 스타일 */
-    .container { padding: 20px; padding-top: 30px !important; } 
-    .info-card { 
-      background: white; padding: 20px; border-radius: 15px; 
-      margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    /* Q&A 페이지와 동일한 여백 확보 */
+    .container { 
+        padding: 20px;
+        padding-top: 30px !important; 
     }
-    .info-card h2 { font-size: 17px; color: #333; margin-top: 0; }
 
-    /* 수식 박스: 흰 배경에 파란 글씨로 가독성 확보 */
+    .main-info {
+        padding: 0 5px;
+    }
+
+    /* Q&A의 sub-title 스타일 적용 */
+    .sub-title { 
+        font-weight: bold; 
+        font-size: 17px; 
+        margin-bottom: 10px; 
+        color: var(--dark-blue);
+        padding-left: 5px;
+    }
+
+    /* Q&A의 content-box 스타일 적용 */
+    .content-box { 
+        background: white; 
+        padding: 20px; 
+        border-radius: 15px; 
+        margin-bottom: 30px; 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+        line-height: 1.6;
+        color: #444;
+        border: 1px solid #f0f0f5;
+    }
+
+    /* 수식 박스 - 검정색 글자 유지 */
     .formula-badge {
-      background: var(--light-bg); 
+      background: #f8f9fa; 
       padding: 18px; border-radius: 12px; 
       margin: 15px 0; font-family: 'Courier New', monospace; 
-      font-weight: bold; color: #0056b3; 
+      font-weight: bold; color: #000; 
       text-align: center; border: 1px solid #eee;
       font-size: 1.1rem;
     }
 
-    /* 계산기 박스 */
-    .calc-box { 
-      background: white; padding: 25px; border-radius: 15px; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
-    }
+    /* 입력 폼 스타일 */
     .input-group { margin-bottom: 20px; }
-    .input-group label { 
-      display: block; font-size: 14px; color: #444; 
-      margin-bottom: 8px; font-weight: bold; 
-    }
+    .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
       width: 100%; padding: 14px; border: 1px solid #e0e0e0; 
-      border-radius: 10px; font-size: 15px; box-sizing: border-box; 
-      outline: none; transition: border 0.2s;
+      border-radius: 10px; font-size: 15px; box-sizing: border-box; outline: none;
     }
     .input-group input:focus { border-color: var(--main-blue); }
-    .input-group input::placeholder { color: #ccc; font-weight: 300; }
 
-    /* 버튼: 하늘색 테마 */
+    /* 계산 버튼 */
     .calc-btn { 
       width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
-      font-size: 16px; font-weight: bold; cursor: pointer; 
-      transition: background 0.3s;
+      font-size: 16px; font-weight: bold; cursor: pointer;
     }
-    .calc-btn:active { background: var(--dark-blue); }
-    
+
     /* 결과 박스 */
     .result-box { 
-      margin-top: 25px; padding: 20px; background: var(--result-bg); 
+      margin-top: 25px; padding: 20px; background: #f0f7ff; 
       border-radius: 12px; text-align: center; display: none; 
       border: 1px dashed var(--main-blue); 
     }
     .result-box.show { display: block; }
     .result-val { font-size: 24px; color: #0056b3; font-weight: 800; }
+
+    footer { text-align: center; padding: 40px 0; color: #bbb; font-size: 13px; }
   </style>
 </head>
 <body>
@@ -86,62 +98,60 @@
   </header>
 
   <main class="container">
-    <div class="info-card">
-      <h2>📊 연금액 결정 공식</h2>
-      <p style="color: #666; font-size: 14px; line-height: 1.5;">기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
-      <div class="formula-badge">
-        연금액 ≈ 1.2(A+B) × (1+0.05n/12)
-      </div>
-    </div>
-
-    <div class="calc-box">
-      <h3 style="margin-top:0; margin-bottom:20px; color:#333; font-size: 16px;">직접 계산해보기</h3>
+    <section class="main-info">
       
-      <div class="input-group">
-        <label>A: 전체 가입자 평균소득</label>
-        <input type="number" id="valA" placeholder="예: 2989237">
+      <div class="sub-title">📊 연금액 결정 및 계산 공식</div>
+      <div class="content-box">
+        <p style="margin-top:0; font-size:14px; color:#666;">기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
+        <div class="formula-badge">
+          연금액 ≈ 1.2(A+B) × (1+0.05n/12)
+        </div>
       </div>
 
-      <div class="input-group">
-        <label>B: 본인의 월 평균 소득</label>
-        <input type="number" id="valB" placeholder="나의 평균 월급 입력">
+      <div class="sub-title">직접 계산해보기</div>
+      <div class="content-box">
+        <div class="input-group">
+          <label>A: 전체 가입자 평균소득</label>
+          <input type="number" id="valA" placeholder="예: 2989237">
+        </div>
+        <div class="input-group">
+          <label>B: 본인의 월 평균 소득</label>
+          <input type="number" id="valB" placeholder="나의 평균 월급 입력">
+        </div>
+        <div class="input-group">
+          <label>n: 20년 초과 가입 개월수</label>
+          <input type="number" id="valN" placeholder="예: 12 (1년 초과 시)">
+        </div>
+        <button class="calc-btn" onclick="calculatePension()">나의 예상 연금 확인하기</button>
+
+        <div id="resultBox" class="result-box">
+          <p style="margin:0; font-size:14px; color:#777; margin-bottom:5px;">나의 예상 연금액 (연간)</p>
+          <div class="result-val" id="totalResult">0원</div>
+          <p id="monthlyResult" style="margin-top:8px; font-size:17px; font-weight:bold; color:#333;"></p>
+        </div>
       </div>
 
-      <div class="input-group">
-        <label>n: 20년 초과 가입 개월수</label>
-        <input type="number" id="valN" placeholder="예: 12 (1년 초과 시)">
-      </div>
-
-      <button class="calc-btn" onclick="calculatePension()">나의 예상 연금 확인하기</button>
-
-      <div id="resultBox" class="result-box">
-        <p style="margin:0; font-size:14px; color:#777; margin-bottom:5px;">나의 예상 연금액 (연간)</p>
-        <div class="result-val" id="totalResult">0원</div>
-        <p id="monthlyResult" style="margin-top:8px; font-size:17px; font-weight:bold; color:#333;"></p>
-      </div>
-    </div>
+    </section>
     
-    <p style="font-size:11px; color:#aaa; margin-top:20px; padding: 0 10px; line-height: 1.4;">
-      * 본 계산기는 이해를 돕기 위한 간이 산식입니다. 실제 수령액은 물가상승률, 가입 시기 등에 따라 국민연금공단의 실제 산정액과 차이가 날 수 있습니다.
+    <p style="font-size:11px; color:#aaa; padding: 0 10px; line-height: 1.4;">
+      * 본 계산기는 이해를 돕기 위한 간이 산식입니다. 실제 수령액은 국민연금공단의 실제 산정액과 차이가 날 수 있습니다.
     </p>
   </main>
+
+  <footer>
+    &copy; 국민연금 정보 가이드
+  </footer>
 
   <script>
     function calculatePension() {
       const a = parseFloat(document.getElementById('valA').value) || 0;
       const b = parseFloat(document.getElementById('valB').value) || 0;
       const n = parseFloat(document.getElementById('valN').value) || 0;
-
-      if(b === 0) {
-        alert("본인의 예상 평균 소득을 입력해주세요.");
-        return;
-      }
-
+      if(b === 0) { alert("본인의 예상 평균 소득을 입력해주세요."); return; }
       const base = 1.2 * (a + b);
       const bonus = 1 + (0.05 * n / 12);
       const annual = Math.floor(base * bonus);
       const monthly = Math.floor(annual / 12);
-
       document.getElementById('totalResult').innerText = annual.toLocaleString() + " 원";
       document.getElementById('monthlyResult').innerText = "월 수령액: 약 " + monthly.toLocaleString() + " 원";
       document.getElementById('resultBox').classList.add('show');
