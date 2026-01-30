@@ -6,69 +6,84 @@
   <title>국민연금 정보 가이드</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* 스플래시 화면 스타일 */
+    /* 스플래시(인트로) 화면 스타일 */
     #splash {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); /* 국민연금 느낌의 파란색 */
+      /* 더 연하고 화사한 파란색 그라데이션 */
+      background: linear-gradient(135deg, #7eb6ff 0%, #4a90e2 100%); 
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.5s ease; /* 사라질 때 부드럽게 */
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .splash-logo {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       background: white;
-      border-radius: 25px;
+      border-radius: 30px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+      animation: float 3s ease-in-out infinite; /* 둥둥 떠있는 효과 */
     }
 
-    .splash-logo span {
-      font-size: 40px;
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
+
+    .splash-logo span { font-size: 45px; }
 
     .splash-title {
       color: white;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
       letter-spacing: -1px;
+      margin-bottom: 8px;
     }
 
     .splash-sub {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
-      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 15px;
+      margin-bottom: 40px;
     }
 
-    /* 로딩 애니메이션 */
-    .loader {
-      margin-top: 30px;
-      width: 40px;
-      height: 40px;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
+    /* 시작하기 버튼 스타일 */
+    .start-btn {
+      padding: 16px 50px;
+      background-color: white;
+      color: #4a90e2;
+      border: none;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .start-btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     /* 본문 숨김 방지 */
-    body.loading {
-      overflow: hidden;
+    body.loading { overflow: hidden; }
+    
+    /* 화면 사라질 때 효과 */
+    #splash.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px); /* 위로 살짝 올라가며 사라짐 */
     }
   </style>
 </head>
@@ -79,8 +94,9 @@
       <span>💙</span> 
     </div>
     <div class="splash-title">국민연금 가이드</div>
-    <div class="splash-sub">든든한 노후를 위한 첫걸음</div>
-    <div class="loader"></div>
+    <div class="splash-sub">알기 쉬운 내 노후 설계</div>
+    
+    <button class="start-btn" onclick="startApp()">시작하기</button>
   </div>
 
   <div id="mainLayout">
@@ -100,13 +116,11 @@
         <div class="info-text-group">
           <p>국민연금의 실 용도는 어떻게 되는 걸까요? 국민들의 미래를 대비해 생활을 유지하는 데 어려움이 들지 않도록 미리 가입하는 연금제도라고 생각하시면 됩니다.</p>
           <p>공적 연금이며, 의무가입을 해야 하므로 소득 활동 시에는 보험료를 납부해야 하는 구조입니다. 내가 내고 싶지 않다고 안 낼 수는 없습니다.</p>
-          <p>국민연금은 그럼 어떠한 상황에서, 어떻게 지급이 되는 걸까요? 고령층 혹은 갑작스러운 사고나 사망, 장애로 인한 소득활동이 중단되었을 경우, 본인이나 유족에게 연금을 지급합니다.</p>
         </div>
       </section>
 
       <section class="menu-list">
         <p class="section-label">더 알아보기 (상세 가이드)</p>
-        
         <a href="calc.html" class="list-item highlight" style="text-decoration:none; color:inherit;">
           <span class="label">📊 연금액 결정 및 계산 공식 상세</span>
           <span class="arrow">›</span>
@@ -124,17 +138,17 @@
   </div>
 
   <script>
-    // 페이지 로드 후 2초 뒤에 스플래시 화면을 제거
-    window.addEventListener('load', function() {
+    function startApp() {
       const splash = document.getElementById('splash');
+      
+      // fade-out 클래스 추가하여 애니메이션 실행
+      splash.classList.add('fade-out');
+      
+      // 애니메이션이 끝난 후 스크롤 허용 및 요소 제거
       setTimeout(() => {
-        splash.style.opacity = '0'; // 투명하게 만들기
-        setTimeout(() => {
-          splash.style.display = 'none'; // 완전히 제거
-          document.body.classList.remove('loading'); // 스크롤 허용
-        }, 500); // fade-out 시간
-      }, 2000); // 2초간 대기 (원하는 시간으로 조절 가능)
-    });
+        document.body.classList.remove('loading');
+      }, 600);
+    }
   </script>
 
 </body>
