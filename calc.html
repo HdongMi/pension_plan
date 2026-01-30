@@ -6,75 +6,88 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 색상 변수 설정 - 연한 하늘색 테마 */
+    /* 색상 변수 설정 - 인트로와 동일한 연한 하늘색 테마 */
     :root {
       --main-blue: #7eb6ff;       /* 연한 하늘색 */
       --dark-blue: #4a90e2;       /* 강조용 조금 더 진한 파란색 */
-      --light-bg: #f0f7ff;        /* 결과창 배경색 */
+      --light-bg: #f8f9fa;        /* 수식 박스용 미색 */
+      --result-bg: #f0f7ff;       /* 결과창 배경색 */
     }
 
-    /* 여백 및 가독성 개선 스타일 */
-    .container { padding-top: 30px !important; } 
-    
-    .info-card { margin-bottom: 30px; } 
+    body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    .calc-box { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-    
+    /* 헤더: 뒤로가기 버튼 삭제 및 중앙 정렬 */
+    .header { 
+      background: var(--main-blue); 
+      color: white; 
+      padding: 15px 0; 
+      text-align: center; 
+    }
+    .header h1 { margin: 0; font-size: 18px; font-weight: bold; }
+
+    /* 컨테이너 및 카드 스타일 */
+    .container { padding: 20px; padding-top: 30px !important; } 
+    .info-card { 
+      background: white; padding: 20px; border-radius: 15px; 
+      margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    }
+    .info-card h2 { font-size: 17px; color: #333; margin-top: 0; }
+
+    /* 수식 박스: 흰 배경에 파란 글씨로 가독성 확보 */
+    .formula-badge {
+      background: var(--light-bg); 
+      padding: 18px; border-radius: 12px; 
+      margin: 15px 0; font-family: 'Courier New', monospace; 
+      font-weight: bold; color: #0056b3; 
+      text-align: center; border: 1px solid #eee;
+      font-size: 1.1rem;
+    }
+
+    /* 계산기 박스 */
+    .calc-box { 
+      background: white; padding: 25px; border-radius: 15px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    }
     .input-group { margin-bottom: 20px; }
-    .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
-    
-    .input-group input { 
-        width: 100%; padding: 14px; border: 1px solid #e0e0e0; border-radius: 10px; 
-        font-size: 15px; box-sizing: border-box; outline: none; transition: border 0.2s;
+    .input-group label { 
+      display: block; font-size: 14px; color: #444; 
+      margin-bottom: 8px; font-weight: bold; 
     }
-    /* 입력창 포커스 시 하늘색으로 변경 */
+    .input-group input { 
+      width: 100%; padding: 14px; border: 1px solid #e0e0e0; 
+      border-radius: 10px; font-size: 15px; box-sizing: border-box; 
+      outline: none; transition: border 0.2s;
+    }
     .input-group input:focus { border-color: var(--main-blue); }
+    .input-group input::placeholder { color: #ccc; font-weight: 300; }
 
-    .input-group input::placeholder { color: #ccc; font-weight: 300; font-size: 14px; }
-
-    /* 버튼 색상을 연한 하늘색으로 변경 */
+    /* 버튼: 하늘색 테마 */
     .calc-btn { 
-      width: 100%; padding: 16px; 
-      background: var(--main-blue); /* 보라색에서 하늘색으로 변경 */
+      width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
       font-size: 16px; font-weight: bold; cursor: pointer; 
-      margin-top: 10px; 
       transition: background 0.3s;
     }
     .calc-btn:active { background: var(--dark-blue); }
     
-    /* 결과 박스 배경색 및 테두리 변경 */
+    /* 결과 박스 */
     .result-box { 
-      margin-top: 25px; padding: 20px; 
-      background: var(--light-bg); 
-      border-radius: 12px; text-align: center; 
-      display: none; 
+      margin-top: 25px; padding: 20px; background: var(--result-bg); 
+      border-radius: 12px; text-align: center; display: none; 
       border: 1px dashed var(--main-blue); 
     }
     .result-box.show { display: block; }
-    .result-val { font-size: 24px; color: var(--dark-blue); font-weight: 800; }
-
-    /* 상단 공식 박스 색상도 조화롭게 변경 */
-    .formula-badge {
-      background: var(--light-bg); 
-      padding: 18px; border-radius: 12px; 
-      margin: 15px 0; font-family: monospace; 
-      font-weight: bold; color: var(--dark-blue); 
-      text-align: center;
-    }
+    .result-val { font-size: 24px; color: #0056b3; font-weight: 800; }
   </style>
 </head>
 <body>
   <header class="header">
-    <div class="header-inner">
-      <a href="index.html" style="position:absolute; left:20px; color:white; text-decoration:none; font-size:20px;">←</a>
-      <h1>연금액 계산기</h1>
-    </div>
+    <h1>연금액 계산기</h1>
   </header>
 
   <main class="container">
     <div class="info-card">
-      <h2 style="margin-top:0;">📊 연금액 결정 공식</h2>
+      <h2>📊 연금액 결정 공식</h2>
       <p style="color: #666; font-size: 14px; line-height: 1.5;">기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
       <div class="formula-badge">
         연금액 ≈ 1.2(A+B) × (1+0.05n/12)
@@ -82,7 +95,7 @@
     </div>
 
     <div class="calc-box">
-      <h3 style="margin-top:0; margin-bottom:20px; color:#333;">직접 계산해보기</h3>
+      <h3 style="margin-top:0; margin-bottom:20px; color:#333; font-size: 16px;">직접 계산해보기</h3>
       
       <div class="input-group">
         <label>A: 전체 가입자 평균소득</label>
@@ -109,7 +122,7 @@
     </div>
     
     <p style="font-size:11px; color:#aaa; margin-top:20px; padding: 0 10px; line-height: 1.4;">
-      * 본 계산기는 이해를 돕기 위한 간이 산식입니다. 실제 수령액은 물가상승률, 가입 시기, 부양가족 연금 등에 따라 국민연금공단의 실제 산정액과 차이가 날 수 있습니다.
+      * 본 계산기는 이해를 돕기 위한 간이 산식입니다. 실제 수령액은 물가상승률, 가입 시기 등에 따라 국민연금공단의 실제 산정액과 차이가 날 수 있습니다.
     </p>
   </main>
 
