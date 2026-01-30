@@ -6,17 +6,17 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 색상 변수 설정 */
+    /* 색상 변수 설정 - 인트로와 동일한 연한 하늘색 테마 */
     :root {
-      --main-blue: #7eb6ff;
-      --dark-blue: #4a90e2;
-      --light-bg: #f8f9fa;
-      --result-bg: #f0f7ff;
+      --main-blue: #7eb6ff;       /* 연한 하늘색 */
+      --dark-blue: #4a90e2;       /* 강조용 조금 더 진한 파란색 */
+      --light-bg: #f8f9fa;        /* 수식 박스용 미색 */
+      --result-bg: #f0f7ff;       /* 결과창 배경색 */
     }
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* 헤더 */
+    /* 헤더: 뒤로가기 버튼 삭제 및 중앙 정렬 */
     .header { 
       background: var(--main-blue); 
       color: white; 
@@ -25,7 +25,7 @@
     }
     .header h1 { margin: 0; font-size: 18px; font-weight: bold; }
 
-    /* 컨테이너 및 카드 */
+    /* 컨테이너 및 카드 스타일 */
     .container { padding: 20px; padding-top: 30px !important; } 
     .info-card { 
       background: white; padding: 20px; border-radius: 15px; 
@@ -33,13 +33,12 @@
     }
     .info-card h2 { font-size: 17px; color: #333; margin-top: 0; }
 
-    /* 수식 박스: 글자색을 검정색(#000)으로 변경 */
+    /* 수식 박스: 흰 배경에 파란 글씨로 가독성 확보 */
     .formula-badge {
       background: var(--light-bg); 
       padding: 18px; border-radius: 12px; 
       margin: 15px 0; font-family: 'Courier New', monospace; 
-      font-weight: bold; 
-      color: #000000; /* 파란색에서 검정색으로 변경 */
+      font-weight: bold; color: #0056b3; 
       text-align: center; border: 1px solid #eee;
       font-size: 1.1rem;
     }
@@ -62,7 +61,7 @@
     .input-group input:focus { border-color: var(--main-blue); }
     .input-group input::placeholder { color: #ccc; font-weight: 300; }
 
-    /* 버튼 */
+    /* 버튼: 하늘색 테마 */
     .calc-btn { 
       width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
@@ -90,7 +89,6 @@
     <div class="info-card">
       <h2>📊 연금액 결정 공식</h2>
       <p style="color: #666; font-size: 14px; line-height: 1.5;">기본연금액은 전체 가입자의 평균 소득(A)과 본인의 평균 소득(B)을 합산하여 결정됩니다.</p>
-      
       <div class="formula-badge">
         연금액 ≈ 1.2(A+B) × (1+0.05n/12)
       </div>
