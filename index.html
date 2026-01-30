@@ -12,8 +12,8 @@
     <div class="landing-content">
       <div class="icon">🏦</div>
       <h1>국민연금 정보 가이드</h1>
-      <p class="subtitle">내 연금 확인부터 제도 안내까지<br>한눈에 확인하세요.</p>
-      <button id="startBtn" class="start-btn">시작하기</button>
+      <p class="subtitle">복잡한 국민연금 계산법부터 제도까지<br>한눈에 이해하기 쉽게 알려드려요.</p>
+      <button id="startBtn" class="start-btn">가이드 시작하기</button>
     </div>
   </div>
 
@@ -23,15 +23,10 @@
     </header>
 
     <main class="menu-grid">
-      <div class="menu-item highlight" onclick="window.open('https://www.nps.or.kr/jsppage/csa/lookup/lookup_01.jsp', '_blank')">
-          <div class="menu-icon">🔍</div>
-          <div class="menu-text"><h3>내 연금액 조회</h3><p>공단 서비스로 이동</p></div>
-      </div>
-      <div class="menu-item highlight" onclick="window.open('https://www.nps.or.kr/jsppage/csa/calc/calc_01.jsp', '_blank')">
+      <div class="menu-item highlight" onclick="showSection('howToCalc')">
           <div class="menu-icon">🧮</div>
-          <div class="menu-text"><h3>예상 수령액 계산</h3><p>모의계산 해보기</p></div>
+          <div class="menu-text"><h3>연금액 계산 공식</h3><p>내 연금은 어떻게 결정될까?</p></div>
       </div>
-
       <div class="menu-item" onclick="showSection('system')">
           <div class="menu-icon">📖</div>
           <div class="menu-text"><h3>국민연금 제도란?</h3><p>기본 개념 이해하기</p></div>
@@ -49,8 +44,7 @@
 
   <div id="detailView" class="detail hidden">
     <button id="backBtn">← 뒤로가기</button>
-    <div id="detailContent" class="detail-body">
-        </div>
+    <div id="detailContent" class="detail-body"></div>
   </div>
 
   <script src="app.js"></script>
