@@ -6,7 +6,7 @@
   <title>계산기 - 국민연금 가이드</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 색상 변수 */
+    /* Q&A 페이지 스타일을 그대로 적용 */
     :root {
       --main-blue: #7eb6ff;
       --dark-blue: #4a90e2;
@@ -14,7 +14,7 @@
 
     body { font-family: -apple-system, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
 
-    /* Q&A 페이지와 100% 동일한 헤더 스타일 */
+    /* Q&A 페이지와 완벽히 동일한 헤더 구조 및 스타일 */
     .header { 
       background: var(--main-blue); 
       color: white; 
@@ -22,6 +22,7 @@
       text-align: center; 
     }
     .header-inner {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,7 +33,7 @@
       font-weight: bold; 
     }
 
-    /* Q&A 페이지 레이아웃 이식 */
+    /* Q&A 페이지 레이아웃 (container, main-info, sub-title, content-box) */
     .container { 
       padding: 20px;
       padding-top: 30px !important; 
@@ -42,7 +43,6 @@
       padding: 0 5px;
     }
 
-    /* Q&A sub-title 스타일 */
     .sub-title { 
       font-weight: bold; 
       font-size: 17px; 
@@ -51,7 +51,6 @@
       padding-left: 5px;
     }
 
-    /* Q&A content-box 스타일 */
     .content-box { 
       background: white; 
       padding: 20px; 
@@ -63,32 +62,33 @@
       border: 1px solid #f0f0f5;
     }
 
-    /* 공식 텍스트 검정색 */
+    /* 공식 박스 텍스트 검정색 */
     .formula-badge {
       background: #f8f9fa; 
       padding: 18px; border-radius: 12px; 
       margin: 15px 0; font-family: 'Courier New', monospace; 
-      font-weight: bold; color: #000; 
+      font-weight: bold; color: #000000; 
       text-align: center; border: 1px solid #eee;
       font-size: 1.1rem;
     }
 
-    /* 입력창 디자인 */
+    /* 계산기 입력 폼 스타일 */
     .input-group { margin-bottom: 20px; }
     .input-group label { display: block; font-size: 14px; color: #444; margin-bottom: 8px; font-weight: bold; }
     .input-group input { 
       width: 100%; padding: 14px; border: 1px solid #e0e0e0; 
       border-radius: 10px; font-size: 15px; box-sizing: border-box; outline: none;
     }
+    .input-group input:focus { border-color: var(--main-blue); }
 
-    /* 버튼 디자인 */
+    /* 계산 버튼 스타일 */
     .calc-btn { 
       width: 100%; padding: 16px; background: var(--main-blue); 
       color: white; border: none; border-radius: 10px; 
       font-size: 16px; font-weight: bold; cursor: pointer;
     }
 
-    /* 결과창 */
+    /* 결과 박스 스타일 */
     .result-box { 
       margin-top: 25px; padding: 20px; background: #f0f7ff; 
       border-radius: 12px; text-align: center; display: none; 
