@@ -1,41 +1,46 @@
-/* 국민연금 종류 그리드 레이아웃 */
-.pension-types-section { margin-bottom: 40px; }
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
-.types-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2열 배치 */
-    gap: 12px;
+:root {
+    --nps-blue: #1e3a8a;
+    --nps-accent: #3b82f6;
+    --nps-light-blue: #f0f7ff;
+    --gray-text: #475569;
 }
 
-.type-box {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 좌측 정렬 */
-    text-align: left;
-    transition: 0.2s;
-}
+body { font-family: 'Pretendard', sans-serif; margin: 0; background: #fff; color: #334155; line-height: 1.7; word-break: keep-all; }
+.hidden { display: none !important; }
 
-.type-icon { font-size: 24px; margin-bottom: 10px; }
+.header { border-bottom: 1px solid #f1f5f9; background: #fff; position: sticky; top: 0; z-index: 50; }
+.header-inner { max-width: 600px; margin: 0 auto; padding: 20px; }
+.header h1 { font-size: 18px; color: var(--nps-blue); margin: 0; text-align: left; }
 
-.type-box strong {
-    font-size: 15px;
-    color: var(--nps-blue);
-    margin-bottom: 5px;
-}
+.container { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; }
 
-.type-box span {
-    font-size: 13px;
-    color: var(--gray-text);
-    line-height: 1.4;
-}
+/* 📘 메인 카드 정렬 */
+.main-info { padding-top: 30px; }
+.info-card { background: #fff; border-radius: 12px; padding: 25px; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-bottom: 30px; }
+.info-card h2 { color: var(--nps-blue); font-size: 22px; margin: 0 0 15px 0; }
+.info-card p { margin: 0; font-size: 16px; color: var(--gray-text); }
+.info-text-group p { margin-bottom: 25px; font-size: 16px; color: var(--gray-text); text-align: left; }
 
-/* 리스트 아이템 강조 스타일 */
-.list-item.highlight {
-    background: var(--nps-blue);
-}
-.list-item.highlight .label { color: #fff; }
-.list-item.highlight .arrow { color: rgba(255,255,255,0.5); }
+/* 🔗 리스트 아이템 */
+.section-label { font-size: 14px; font-weight: 600; color: #94a3b8; margin-bottom: 15px; }
+.list-item { display: flex; align-items: center; padding: 20px; background: var(--nps-light-blue); border-radius: 12px; margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
+.list-item .label { flex: 1; font-weight: 600; font-size: 16px; }
+.list-item .arrow { color: #94a3b8; font-size: 20px; }
+
+/* 🧮 상세페이지/계산기 스타일 */
+.detail { position: fixed; inset: 0; background: white; z-index: 100; display: flex; flex-direction: column; }
+.detail-header { height: 60px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; padding: 0 20px; }
+#backBtn { border: none; background: none; font-size: 16px; font-weight: 700; color: var(--nps-blue); cursor: pointer; }
+.detail-body { flex: 1; overflow-y: auto; padding: 30px 20px; }
+
+.calc-container { background: var(--nps-light-blue); border-radius: 15px; padding: 20px; margin: 20px 0; border: 1px solid #dbeafe; }
+.calc-input-group { margin-bottom: 15px; }
+.calc-input-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 5px; color: var(--nps-blue); }
+.calc-input-group input { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+.calc-btn { width: 100%; padding: 15px; background: var(--nps-blue); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; }
+.calc-result { margin-top: 20px; padding: 20px; background: #f0fdf4; border-radius: 10px; text-align: center; border: 1px solid #bbf7d0; }
+
+.sub-title { font-size: 18px; font-weight: 700; color: var(--nps-blue); margin: 25px 0 10px; }
+.content-box { background: #f8fafc; padding: 18px; border-radius: 10px; margin-bottom: 15px; border-left: 4px solid var(--nps-accent); }
