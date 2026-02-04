@@ -93,11 +93,28 @@
   </div>
 
   <script>
+    /**
+     * 페이지 로드 시 실행:
+     * 세션 스토리지에 '봤음' 기록이 있다면 스플래시를 즉시 제거합니다.
+     */
+    (function() {
+      if (sessionStorage.getItem('splashViewed') === 'true') {
+        const splash = document.getElementById('splash');
+        if (splash) splash.style.display = 'none';
+        document.body.classList.remove('loading');
+      }
+    })();
+
     function startApp() {
       const splash = document.getElementById('splash');
+      
+      // 1. 세션 스토리지에 기록 (브라우저가 닫히기 전까지 유지)
+      sessionStorage.setItem('splashViewed', 'true');
+      
+      // 2. 페이드 아웃 애니메이션
       splash.classList.add('fade-out');
       
-      // 애니메이션 후 요소를 아예 삭제하여 뒤로가기 시 인트로 재진입 방지
+      // 3. 애니메이션 후 요소 삭제
       setTimeout(() => {
         splash.remove(); 
         document.body.classList.remove('loading');
