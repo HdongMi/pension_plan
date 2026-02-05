@@ -8,32 +8,39 @@
   <style>
     /* 1. Q&A 페이지와 동일한 레이아웃 및 여백 설정 */
     .container { 
-        padding-top: 30px !important; 
+        /* 헤더 고정으로 인한 가려짐 방지를 위해 패딩 상향 조절 */
+        padding-top: 85px !important; 
     }
 
     .main-info {
         padding: 0 5px;
     }
 
-    /* 2. 제목(h1) 스타일을 Q&A 페이지와 100% 동일하게 강제 고정 */
+    /* 2. 제목(h1) 상단 고정 (Fixed) 설정 */
     .header {
-      background: none;
-      padding: 0; /* 불필요한 패딩 제거 */
+      position: fixed; /* 스크롤 시 상단 고정 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white; /* 뒤의 내용이 비치지 않게 배경색 지정 */
+      z-index: 1000;    /* 최상단 레이어 유지 */
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* 경계 구분을 위한 미세한 그림자 */
     }
     
     .header-inner {
-      padding: 30px 20px 10px 25px; /* Q&A 헤더 위치와 동일하게 설정 */
+      padding: 20px 20px 15px 25px; /* Q&A 헤더 위치와 동일하게 최적화 */
     }
 
     .header h1 {
       margin: 0;
-      font-size: 20px; /* Q&A 페이지 기본 크기 */
+      font-size: 20px;
       font-weight: bold;
-      color: #1d265a; /* 이미지에서 보이는 진한 남색 */
+      color: #1d265a;
       text-align: left;
     }
 
-    /* 3. 소제목(sub-title) 색상을 Q&A처럼 하늘색으로 통일 */
+    /* 3. 소제목(sub-title) 스타일 */
     .sub-title { 
         font-weight: bold; 
         font-size: 17px; 
@@ -56,7 +63,7 @@
         border: 1px solid #f0f0f5;
     }
 
-    /* 계산기 전용 추가 스타일 */
+    /* 계산기 전용 스타일 */
     .formula-badge {
       background: #f8f9fa; padding: 18px; border-radius: 12px; 
       margin: 15px 0; font-family: 'Courier New', monospace; 
